@@ -72,7 +72,8 @@ public class Milestone extends Model implements ResourceConvertible {
     @OneToMany(mappedBy = "milestone")
     public Set<Issue> issues;
 
-   // @OneToMany(mappedBy = "milestone")
+    
+    @OneToMany(mappedBy = "milestone")
     public Set<PullRequest> pullRequests;
 
  //   @OneToMany(mappedBy = "milestone")
@@ -84,6 +85,11 @@ public class Milestone extends Model implements ResourceConvertible {
         for(Issue issue : issues) {
             issue.milestone = null;
             issue.update();
+        }
+
+        for(PullRequest pullrequest : pullRequests){
+            pullrequest.milestone = null;
+            pullrequest.update();
         }
 
         super.delete();
