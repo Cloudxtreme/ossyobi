@@ -23,6 +23,8 @@
 @import utils.TemplateHelper._
 @import utils.AccessControl._
 @import models.support.SearchCondition
+@import controllers.PullRequestApp.{ SearchCondition => PullSearchCondition };
+@import controllers.PullRequestApp.Category;
 @import play.libs.Json.toJson
 @import utils.Markdown
 
@@ -169,9 +171,9 @@
                     @{
                         pullRequestState match {
                             case State.OPEN =>
-                                issue.partial_list(project, milestone.sortedByNumberOfOpenIssue(), new SearchCondition(),0,0)
+                                git.partial_list(project, PullRequest.findPagingList(new PullSearchCondition().setMilestone(milestone).setCategory(Category.OPEN)))
                             case State.CLOSED =>
-                                issue.partial_list(project, milestone.sortedByNumberOfClosedIssue(), new SearchCondition(),0,0)
+                                git.partial_list(project, PullRequest.findPagingList(new PullSearchCondition().setMilestone(milestone).setCategory(Category.CLOSE)))
                             case _ =>
                                 issue.partial_list(project, milestone.sortedByNumberOfIssue(), new SearchCondition(),0,0)
                         }

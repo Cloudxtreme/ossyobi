@@ -671,6 +671,7 @@ public class PullRequestApp extends Controller {
         public Long contributorId;
         public int pageNum = Constants.DEFAULT_PAGE;
         public Category category;
+        public Milestone milestone;
 
         public SearchCondition setProject(Project project) {
             this.project = project;
@@ -679,6 +680,11 @@ public class PullRequestApp extends Controller {
 
         public SearchCondition setFilter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        public SearchCondition setMilestone(Milestone milestone){
+            this.milestone = milestone;
             return this;
         }
 
@@ -706,6 +712,7 @@ public class PullRequestApp extends Controller {
             clone.contributorId = this.contributorId;
             clone.pageNum = this.pageNum;
             clone.category = this.category;
+            clone.milestone = this.milestone;
             return clone;
         }
 

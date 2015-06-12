@@ -134,6 +134,27 @@ public class Milestone extends Model implements ResourceConvertible {
         return openedIssues;
     }
 
+    public List<PullRequest> OpenPullRequest(){
+        List<PullRequest> openedPullRequests = new ArrayList<>();
+        for(PullRequest pullrequest : pullRequests){
+            if(pullrequest.isOpen()){
+                openedPullRequests.add(pullrequest);
+            }
+        }
+        return openedPullRequests;
+    }
+
+    public List<PullRequest> ClosedPullRequest(){
+        List<PullRequest> closedPullRequests = new ArrayList<>();
+        for(PullRequest pullrequest : pullRequests){
+            if(pullrequest.isClosed()){
+                closedPullRequests.add(pullrequest);
+            }
+        }
+        return closedPullRequests;
+    }
+
+
     public List<Issue> sortedByNumberOfClosedIssue(){
         List<Issue> closedIssues = new ArrayList<>();
         for(Issue issue : sortedByNumberOfIssue()) {
