@@ -737,6 +737,7 @@ public class PullRequestApp extends Controller {
     public enum Category {
         OPEN("open", "toProject", "number", State.OPEN),
         CLOSED("closed", "toProject", "received", State.CLOSED, State.MERGED),
+        ALL("all", "toProject", "number", State.CLOSED, State.OPEN, State.MERGED),
         SENT("sent", "fromProject", "created"),
         ACCEPTED("accepted", "fromProject", "created", State.MERGED);
 

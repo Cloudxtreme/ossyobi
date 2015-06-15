@@ -160,27 +160,21 @@
                 }
                 **@
                 </ul>
-                @**
+                
                 <div class="PullRequests">
-                    <div class="filter-wrap">
-                    <div class="pull-right search search-bar">
-                        <input name="filter" class="textbox" type="text" placeholder="@Messages("milestone.searchPlaceholder")" value="" data-toggle="item-search" data-items="issue-item">
-                        <button type="submit" class="search-btn"><i class="yobicon-search"></i></button>
-                    </div>
-                    </div>
                     @{
                         pullRequestState match {
                             case State.OPEN =>
                                 git.partial_list(project, PullRequest.findPagingList(new PullSearchCondition().setMilestone(milestone).setCategory(Category.OPEN)))
                             case State.CLOSED =>
-                                git.partial_list(project, PullRequest.findPagingList(new PullSearchCondition().setMilestone(milestone).setCategory(Category.CLOSE)))
+                                git.partial_list(project, PullRequest.findPagingList(new PullSearchCondition().setMilestone(milestone).setCategory(Category.CLOSED)))
                             case _ =>
-                                issue.partial_list(project, milestone.sortedByNumberOfIssue(), new SearchCondition(),0,0)
+                                git.partial_list(project, PullRequest.findPagingList(new PullSearchCondition().setMilestone(milestone).setCategory(Category.ALL)));
                         }
                     }
 
                 </div>
-                **@
+                
             </div>
 
         </div>
