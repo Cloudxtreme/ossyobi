@@ -498,8 +498,8 @@ public class PullRequestApp extends Controller {
             return status(REQUEST_ENTITY_TOO_LARGE,
                     ErrorViews.RequestTextEntityTooLarge.render());
         }
-
-        setMilestone(pullRequestForm, updatedPullRequest);
+        setMilestone(pullRequestForm, pullRequest);
+       
         updatedPullRequest.toProject = toProject;
         updatedPullRequest.fromProject = fromProject;
 
