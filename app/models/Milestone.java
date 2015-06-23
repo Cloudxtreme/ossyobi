@@ -111,6 +111,10 @@ public class Milestone extends Model implements ResourceConvertible {
     public int getNumClosedPullRequests() {
         return PullRequest.finder.where().eq("milestone", this).eq("state", State.CLOSED).findRowCount();
     }
+
+    public int getNumMergedPullRequests(){
+        return PullRequest.finder.where().eq("milestone", this).eq("state", State.MERGED).findRowCount();
+    }
     
 
     public List<Issue> sortedByNumberOfIssue(){
@@ -173,7 +177,7 @@ public class Milestone extends Model implements ResourceConvertible {
     }
 
     public int getCompletionRate() {
-        return (int) (((double) (getNumClosedIssues()+ getNumClosedPullRequests()) / (double) (getNumTotalPullRequests() + getNumTotalIssues())) * 100);
+        return (int) (((double) (getNumClosedIssues()+ getNumClosedPullRequests() + getNumMergedPullRequests()) / (double) (getNumTotalPullRequests() + getNumTotalIssues())) * 100);
     }
  
 
